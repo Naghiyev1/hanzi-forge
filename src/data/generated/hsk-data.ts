@@ -1,0 +1,121 @@
+import type { HanziEntry } from '../types'
+
+export const HSK_DATA: HanziEntry[] = [
+  {
+    "id": "hsk1-的",
+    "character": "的",
+    "pinyin": "de",
+    "definition": "possessive/adjectival suffix",
+    "radical": "白",
+    "radicalMeta": "106.3",
+    "strokeCount": 8,
+    "hskLevel": 1,
+    "generalStandard": "1155",
+    "frequencyRank": 1,
+    "mnemonic": "Think of 的 as the tiny grammatical hook that attaches ownership."
+  },
+  {
+    "id": "hsk1-一",
+    "character": "一",
+    "pinyin": "yī",
+    "definition": "one; a; an; alone",
+    "radical": "一",
+    "radicalMeta": "1.0",
+    "strokeCount": 1,
+    "hskLevel": 1,
+    "generalStandard": "0001",
+    "frequencyRank": 2,
+    "mnemonic": "One horizontal line. One thing."
+  },
+  {
+    "id": "hsk1-人",
+    "character": "人",
+    "pinyin": "rén",
+    "definition": "person; people; mankind",
+    "radical": "人",
+    "radicalMeta": "9.0",
+    "strokeCount": 2,
+    "hskLevel": 1,
+    "generalStandard": "0010",
+    "frequencyRank": 7,
+    "mnemonic": "Looks like a person standing on two legs."
+  },
+  {
+    "id": "hsk1-你",
+    "character": "你",
+    "pinyin": "nǐ",
+    "definition": "you",
+    "radical": "人",
+    "radicalMeta": "9.5",
+    "strokeCount": 7,
+    "hskLevel": 1,
+    "generalStandard": "0782",
+    "frequencyRank": 32,
+    "mnemonic": "The left side 亻 means person. Think of pointing to a person: you."
+  },
+  {
+    "id": "hsk1-好",
+    "character": "好",
+    "pinyin": "hǎo",
+    "definition": "good; excellent; fine; well",
+    "radical": "女",
+    "radicalMeta": "38.3",
+    "strokeCount": 6,
+    "hskLevel": 1,
+    "generalStandard": "0581",
+    "frequencyRank": 82,
+    "mnemonic": "女 plus 子. Useful visual hook: woman + child = good."
+  },
+  {
+    "id": "hsk1-明",
+    "character": "明",
+    "pinyin": "míng",
+    "definition": "bright; clear",
+    "radical": "日",
+    "radicalMeta": "72.4",
+    "strokeCount": 8,
+    "hskLevel": 1,
+    "generalStandard": "1087",
+    "frequencyRank": 121,
+    "mnemonic": "日 sun + 月 moon. Sun and moon together make brightness."
+  },
+  {
+    "id": "hsk2-问",
+    "character": "问",
+    "pinyin": "wèn",
+    "definition": "ask; inquire",
+    "radical": "門",
+    "radicalMeta": "169.3",
+    "strokeCount": 6,
+    "hskLevel": 2,
+    "generalStandard": "0528",
+    "frequencyRank": 137,
+    "mnemonic": "A mouth 口 inside a door 门: someone at the door asking a question."
+  },
+  {
+    "id": "hsk2-休",
+    "character": "休",
+    "pinyin": "xiū",
+    "definition": "rest; stop",
+    "radical": "人",
+    "radicalMeta": "9.4",
+    "strokeCount": 6,
+    "hskLevel": 2,
+    "generalStandard": "0458",
+    "frequencyRank": 1082,
+    "mnemonic": "A person 亻 leaning against a tree 木. That is rest."
+  },
+  {
+    "id": "hsk3-想",
+    "character": "想",
+    "pinyin": "xiǎng",
+    "definition": "think; want; miss",
+    "radical": "心",
+    "radicalMeta": "61.9",
+    "strokeCount": 13,
+    "hskLevel": 3,
+    "generalStandard": "2867",
+    "frequencyRank": 99,
+    "mnemonic": "相 sits above 心 heart. Thought in Chinese often lives in the heart-mind."
+  }
+]
