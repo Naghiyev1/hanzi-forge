@@ -1,79 +1,80 @@
+// @ts-nocheck
 export const HSK_VALIDATION_SUMMARY = [
   {
     "level": "1",
-    "entries": 300,
+    "entries": 0,
     "expectedEntries": 300,
-    "characterRows": 137,
-    "uniqueCharacters": 137,
+    "characterRows": 0,
+    "uniqueCharacters": 0,
     "expectedCharactersFromPdf": 137,
-    "wordRows": 163,
+    "wordRows": 0,
     "expectedWordsFromPdf": 163,
-    "status": "ok"
+    "status": "entries-mismatch"
   },
   {
     "level": "2",
-    "entries": 200,
+    "entries": 0,
     "expectedEntries": 200,
-    "characterRows": 84,
-    "uniqueCharacters": 82,
+    "characterRows": 0,
+    "uniqueCharacters": 0,
     "expectedCharactersFromPdf": 84,
-    "wordRows": 116,
+    "wordRows": 0,
     "expectedWordsFromPdf": 116,
-    "status": "ok"
+    "status": "entries-mismatch"
   },
   {
     "level": "3",
-    "entries": 500,
+    "entries": 0,
     "expectedEntries": 500,
-    "characterRows": 134,
-    "uniqueCharacters": 133,
+    "characterRows": 0,
+    "uniqueCharacters": 0,
     "expectedCharactersFromPdf": 134,
-    "wordRows": 366,
+    "wordRows": 0,
     "expectedWordsFromPdf": 366,
-    "status": "ok"
+    "status": "entries-mismatch"
   },
   {
     "level": "4",
-    "entries": 1000,
+    "entries": 0,
     "expectedEntries": 1000,
-    "characterRows": 210,
-    "uniqueCharacters": 207,
+    "characterRows": 0,
+    "uniqueCharacters": 0,
     "expectedCharactersFromPdf": 210,
-    "wordRows": 790,
+    "wordRows": 0,
     "expectedWordsFromPdf": 790,
-    "status": "ok"
+    "status": "entries-mismatch"
   },
   {
     "level": "5",
-    "entries": 1600,
+    "entries": 0,
     "expectedEntries": 1600,
-    "characterRows": 266,
-    "uniqueCharacters": 261,
+    "characterRows": 0,
+    "uniqueCharacters": 0,
     "expectedCharactersFromPdf": 266,
-    "wordRows": 1334,
+    "wordRows": 0,
     "expectedWordsFromPdf": 1334,
-    "status": "ok"
+    "status": "entries-mismatch"
   },
   {
     "level": "6",
-    "entries": 1800,
+    "entries": 0,
     "expectedEntries": 1800,
-    "characterRows": 252,
-    "uniqueCharacters": 246,
+    "characterRows": 0,
+    "uniqueCharacters": 0,
     "expectedCharactersFromPdf": 252,
-    "wordRows": 1548,
+    "wordRows": 0,
     "expectedWordsFromPdf": 1548,
-    "status": "ok"
+    "status": "entries-mismatch"
   },
   {
     "level": "7-9",
-    "entries": 5600,
+    "entries": 0,
     "expectedEntries": 5600,
-    "characterRows": 513,
-    "uniqueCharacters": 502,
+    "characterRows": 0,
+    "uniqueCharacters": 0,
     "expectedCharactersFromPdf": 512,
-    "wordRows": 5087,
+    "wordRows": 0,
     "expectedWordsFromPdf": 5088,
-    "status": "ok"
+    "status": "entries-mismatch"
   }
 ]
