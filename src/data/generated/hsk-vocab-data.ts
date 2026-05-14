@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { VocabEntry } from '../types'
 
 export const HSK_VOCAB: VocabEntry[] = [
