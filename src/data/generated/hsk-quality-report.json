@@ -1,0 +1,264 @@
+{
+  "generatedAt": "2026-05-14T11:14:30.685Z",
+  "summary": {
+    "1": {
+      "entries": 300,
+      "expectedEntries": 300,
+      "characterRows": 137,
+      "expectedCharacters": 137,
+      "wordRows": 163,
+      "expectedWords": 163,
+      "status": "ok"
+    },
+    "2": {
+      "entries": 200,
+      "expectedEntries": 200,
+      "characterRows": 84,
+      "expectedCharacters": 84,
+      "wordRows": 116,
+      "expectedWords": 116,
+      "status": "ok"
+    },
+    "3": {
+      "entries": 500,
+      "expectedEntries": 500,
+      "characterRows": 134,
+      "expectedCharacters": 134,
+      "wordRows": 366,
+      "expectedWords": 366,
+      "status": "ok"
+    },
+    "4": {
+      "entries": 1000,
+      "expectedEntries": 1000,
+      "characterRows": 210,
+      "expectedCharacters": 210,
+      "wordRows": 790,
+      "expectedWords": 790,
+      "status": "ok"
+    },
+    "5": {
+      "entries": 1600,
+      "expectedEntries": 1600,
+      "characterRows": 266,
+      "expectedCharacters": 266,
+      "wordRows": 1334,
+      "expectedWords": 1334,
+      "status": "ok"
+    },
+    "6": {
+      "entries": 1800,
+      "expectedEntries": 1800,
+      "characterRows": 252,
+      "expectedCharacters": 252,
+      "wordRows": 1548,
+      "expectedWords": 1548,
+      "status": "ok"
+    },
+    "7-9": {
+      "entries": 5600,
+      "expectedEntries": 5600,
+      "characterRows": 513,
+      "expectedCharacters": 512,
+      "wordRows": 5087,
+      "expectedWords": 5088,
+      "status": "split-needs-review"
+    }
+  },
+  "totals": {
+    "vocabEntries": 11000,
+    "characterEntries": 6947,
+    "fixedDefinitionLeaks": 33,
+    "emptyDefinitions": 13,
+    "suspiciousPos": 10,
+    "splitMismatches": 1
+  },
+  "suspicious": {
+    "emptyDefinitions": [
+      {
+        "id": "hsk1-259",
+        "level": "1",
+        "word": "一下",
+        "pinyin": "yí xià",
+        "pos": "num.mw. [used after a verb] give something a go"
+      },
+      {
+        "id": "hsk1-261",
+        "level": "1",
+        "word": "一点儿",
+        "pinyin": "yì diǎn ér",
+        "pos": "num.mw. a bit"
+      },
+      {
+        "id": "hsk1-262",
+        "level": "1",
+        "word": "一些",
+        "pinyin": "yì xiē",
+        "pos": "num.mw. some"
+      },
+      {
+        "id": "hsk2-171",
+        "level": "2",
+        "word": "一会儿",
+        "pinyin": "yí huìr",
+        "pos": "num.mw. a short while"
+      },
+      {
+        "id": "hsk3-13",
+        "level": "3",
+        "word": "半天",
+        "pinyin": "bàn tiān",
+        "pos": "num.mw. half of the day"
+      },
+      {
+        "id": "hsk4-469",
+        "level": "4",
+        "word": "俩",
+        "pinyin": "liǎ",
+        "pos": "num.mw. two; both (people)"
+      },
+      {
+        "id": "hsk5-13",
+        "level": "5",
+        "word": "半夜",
+        "pinyin": "bàn yè",
+        "pos": "num.mw./n.midnight"
+      },
+      {
+        "id": "hsk5-1049",
+        "level": "5",
+        "word": "首次",
+        "pinyin": "shǒu cì",
+        "pos": "num.mw. first"
+      },
+      {
+        "id": "hsk6-1557",
+        "level": "6",
+        "word": "一阵",
+        "pinyin": "yí zhèn",
+        "pos": "num.mw. a burst"
+      },
+      {
+        "id": "hsk7-9-2592",
+        "level": "7-9",
+        "word": "两下子",
+        "pinyin": "liǎng xià zǐ",
+        "pos": "num.mw./n.a few tricks of the trade"
+      },
+      {
+        "id": "hsk7-9-2821",
+        "level": "7-9",
+        "word": "瞄准",
+        "pinyin": "miáo zhǔn",
+        "pos": "v."
+      },
+      {
+        "id": "hsk7-9-2926",
+        "level": "7-9",
+        "word": "南辕北辙",
+        "pinyin": "nán yuán běi zhé",
+        "pos": ""
+      },
+      {
+        "id": "hsk7-9-3738",
+        "level": "7-9",
+        "word": "首批",
+        "pinyin": "shǒu pī",
+        "pos": "num.mw. First batch"
+      }
+    ],
+    "suspiciousPos": [
+      {
+        "id": "hsk1-259",
+        "level": "1",
+        "word": "一下",
+        "pinyin": "yí xià",
+        "pos": "num.mw. [used after a verb] give something a go",
+        "definition": ""
+      },
+      {
+        "id": "hsk1-262",
+        "level": "1",
+        "word": "一些",
+        "pinyin": "yì xiē",
+        "pos": "num.mw. some",
+        "definition": ""
+      },
+      {
+        "id": "hsk2-171",
+        "level": "2",
+        "word": "一会儿",
+        "pinyin": "yí huìr",
+        "pos": "num.mw. a short while",
+        "definition": ""
+      },
+      {
+        "id": "hsk3-13",
+        "level": "3",
+        "word": "半天",
+        "pinyin": "bàn tiān",
+        "pos": "num.mw. half of the day",
+        "definition": ""
+      },
+      {
+        "id": "hsk4-469",
+        "level": "4",
+        "word": "俩",
+        "pinyin": "liǎ",
+        "pos": "num.mw. two; both (people)",
+        "definition": ""
+      },
+      {
+        "id": "hsk5-13",
+        "level": "5",
+        "word": "半夜",
+        "pinyin": "bàn yè",
+        "pos": "num.mw./n.midnight",
+        "definition": ""
+      },
+      {
+        "id": "hsk5-1049",
+        "level": "5",
+        "word": "首次",
+        "pinyin": "shǒu cì",
+        "pos": "num.mw. first",
+        "definition": ""
+      },
+      {
+        "id": "hsk6-1557",
+        "level": "6",
+        "word": "一阵",
+        "pinyin": "yí zhèn",
+        "pos": "num.mw. a burst",
+        "definition": ""
+      },
+      {
+        "id": "hsk7-9-2592",
+        "level": "7-9",
+        "word": "两下子",
+        "pinyin": "liǎng xià zǐ",
+        "pos": "num.mw./n.a few tricks of the trade",
+        "definition": ""
+      },
+      {
+        "id": "hsk7-9-3738",
+        "level": "7-9",
+        "word": "首批",
+        "pinyin": "shǒu pī",
+        "pos": "num.mw. First batch",
+        "definition": ""
+      }
+    ],
+    "splitMismatches": [
+      {
+        "entries": 5600,
+        "expectedEntries": 5600,
+        "characterRows": 513,
+        "expectedCharacters": 512,
+        "wordRows": 5087,
+        "expectedWords": 5088,
+        "status": "split-needs-review"
+      }
+    ]
+  }
+}

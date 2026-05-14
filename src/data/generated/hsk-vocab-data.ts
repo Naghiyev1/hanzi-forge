@@ -351,8 +351,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "1",
     "word": "对",
     "pinyin": "duì",
-    "pos": "adj./prep. correct; right",
-    "definition": ""
+    "pos": "adj./prep.",
+    "definition": "correct; right"
   },
   {
     "id": "hsk1-45",
@@ -439,8 +439,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "1",
     "word": "分",
     "pinyin": "fēn",
-    "pos": "mw./",
-    "definition": ") minute"
+    "pos": "mw.",
+    "definition": "minute"
   },
   {
     "id": "hsk1-56",
@@ -625,8 +625,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "1",
     "word": "和",
     "pinyin": "hé",
-    "pos": "prep./conj. and",
-    "definition": ""
+    "pos": "prep./conj.",
+    "definition": "and"
   },
   {
     "id": "hsk1-79",
@@ -681,8 +681,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "1",
     "word": "几",
     "pinyin": "jǐ",
-    "pos": "pron./num. how much/many? [expecting a small number]",
-    "definition": ""
+    "pos": "pron./num.",
+    "definition": "how much/many? [expecting a small number]"
   },
   {
     "id": "hsk1-86",
@@ -2768,8 +2768,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "2",
     "word": "跟",
     "pinyin": "gēn",
-    "pos": "prep./conj. heel; to follow",
-    "definition": ""
+    "pos": "prep./conj.",
+    "definition": "heel; to follow"
   },
   {
     "id": "hsk2-46",
@@ -2826,8 +2826,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "2",
     "word": "还是",
     "pinyin": "hái shi",
-    "pos": "adv./conj. ...or...? [in a question]",
-    "definition": ""
+    "pos": "adv./conj.",
+    "definition": "...or...? [in a question]"
   },
   {
     "id": "hsk2-53",
@@ -3258,8 +3258,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "2",
     "word": "那么",
     "pinyin": "nà me",
-    "pos": "pron./conj. like that",
-    "definition": ""
+    "pos": "pron./conj.",
+    "definition": "like that"
   },
   {
     "id": "hsk2-107",
@@ -3819,8 +3819,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "2",
     "word": "因为",
     "pinyin": "yīn wèi",
-    "pos": "prep./conj. because",
-    "definition": ""
+    "pos": "prep./conj.",
+    "definition": "because"
   },
   {
     "id": "hsk2-177",
@@ -4060,8 +4060,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "3",
     "word": "把",
     "pinyin": "bǎ",
-    "pos": "mw./prep. grasp; [measure word for knives]",
-    "definition": ""
+    "pos": "mw./prep.",
+    "definition": "grasp; [measure word for knives]"
   },
   {
     "id": "hsk3-7",
@@ -7846,8 +7846,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "3",
     "word": "只是",
     "pinyin": "zhǐ shì",
-    "pos": "adv./conj. merely; only; just; nothing but",
-    "definition": ""
+    "pos": "adv./conj.",
+    "definition": "merely; only; just; nothing but"
   },
   {
     "id": "hsk3-479",
@@ -8458,8 +8458,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "4",
     "word": "不光",
     "pinyin": "bù guāng",
-    "pos": "adv./conj. not the only one",
-    "definition": ""
+    "pos": "adv./conj.",
+    "definition": "not the only one"
   },
   {
     "id": "hsk4-55",
@@ -9992,8 +9992,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "4",
     "word": "各",
     "pinyin": "gè",
-    "pos": "pron./adv. each",
-    "definition": ""
+    "pos": "pron./adv.",
+    "definition": "each"
   },
   {
     "id": "hsk4-246",
@@ -10008,8 +10008,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "4",
     "word": "各个",
     "pinyin": "gè gè",
-    "pos": "pron./adv. every",
-    "definition": ""
+    "pos": "pron./adv.",
+    "definition": "every"
   },
   {
     "id": "hsk4-248",
@@ -10656,8 +10656,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "4",
     "word": "既",
     "pinyin": "jì",
-    "pos": "adv./conj. already; since; both...and...",
-    "definition": ""
+    "pos": "adv./conj.",
+    "definition": "already; since; both...and..."
   },
   {
     "id": "hsk4-329",
@@ -10888,8 +10888,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "4",
     "word": "将",
     "pinyin": "jiāng",
-    "pos": "prep./adv. will, shall; general, commander",
-    "definition": ""
+    "pos": "prep./adv.",
+    "definition": "will, shall; general, commander"
   },
   {
     "id": "hsk4-358",
@@ -11152,8 +11152,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "4",
     "word": "尽管",
     "pinyin": "jǐn guǎn",
-    "pos": "adv./conj. without hesitating; despite",
-    "definition": ""
+    "pos": "adv./conj.",
+    "definition": "without hesitating; despite"
   },
   {
     "id": "hsk4-391",
@@ -11304,8 +11304,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "4",
     "word": "就是",
     "pinyin": "jiù shì",
-    "pos": "part./adv. exactly; precisely",
-    "definition": ""
+    "pos": "part./adv.",
+    "definition": "exactly; precisely"
   },
   {
     "id": "hsk4-410",
@@ -11891,8 +11891,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "4",
     "word": "另外",
     "pinyin": "lìng wài",
-    "pos": "pron./adv. another",
-    "definition": ""
+    "pos": "pron./adv.",
+    "definition": "another"
   },
   {
     "id": "hsk4-483",
@@ -13508,8 +13508,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "4",
     "word": "首先",
     "pinyin": "shǒu xiān",
-    "pos": "adv./pron. first",
-    "definition": ""
+    "pos": "adv./pron.",
+    "definition": "first"
   },
   {
     "id": "hsk4-685",
@@ -14479,8 +14479,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "4",
     "word": "相反",
     "pinyin": "xiāng fǎn",
-    "pos": "adj./conj. opposite; on the contrary",
-    "definition": ""
+    "pos": "adj./conj.",
+    "definition": "opposite; on the contrary"
   },
   {
     "id": "hsk4-806",
@@ -15151,8 +15151,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "4",
     "word": "由于",
     "pinyin": "yóu yú",
-    "pos": "prep./conj. due to",
-    "definition": ""
+    "pos": "prep./conj.",
+    "definition": "due to"
   },
   {
     "id": "hsk4-890",
@@ -15223,8 +15223,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "4",
     "word": "与",
     "pinyin": "yǔ",
-    "pos": "prep./conj. together with",
-    "definition": ""
+    "pos": "prep./conj.",
+    "definition": "together with"
   },
   {
     "id": "hsk4-899",
@@ -16363,8 +16363,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "5",
     "word": "本",
     "pinyin": "běn",
-    "pos": "adv./pron. root; [measure word for books]",
-    "definition": ""
+    "pos": "adv./pron.",
+    "definition": "root; [measure word for books]"
   },
   {
     "id": "hsk5-41",
@@ -20198,8 +20198,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "5",
     "word": "或是",
     "pinyin": "huò shì",
-    "pos": "adv./conj. or",
-    "definition": ""
+    "pos": "adv./conj.",
+    "definition": "or"
   },
   {
     "id": "hsk5-519",
@@ -20816,8 +20816,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "5",
     "word": "较",
     "pinyin": "jiào",
-    "pos": "prep./adv. compare; relatively; fairly",
-    "definition": ""
+    "pos": "prep./adv.",
+    "definition": "compare; relatively; fairly"
   },
   {
     "id": "hsk5-596",
@@ -41476,8 +41476,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "6",
     "word": "因",
     "pinyin": "yīn",
-    "pos": "prep./conj. cause, reason, basis",
-    "definition": ""
+    "pos": "prep./conj.",
+    "definition": "cause, reason, basis"
   },
   {
     "id": "hsk6-1575",
@@ -51325,8 +51325,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "7-9",
     "word": "多半",
     "pinyin": "duō bàn",
-    "pos": "num./adv. Most",
-    "definition": ""
+    "pos": "num./adv.",
+    "definition": "Most"
   },
   {
     "id": "hsk7-9-1005",
@@ -54887,8 +54887,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "7-9",
     "word": "故",
     "pinyin": "gù",
-    "pos": "adv./conj. reason, cause; old, former",
-    "definition": ""
+    "pos": "adv./conj.",
+    "definition": "reason, cause; old, former"
   },
   {
     "id": "hsk7-9-1450",
@@ -55647,8 +55647,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "7-9",
     "word": "果真",
     "pinyin": "guǒ zhēn",
-    "pos": "adv./conj. Indeed / really",
-    "definition": ""
+    "pos": "adv./conj.",
+    "definition": "Indeed / really"
   },
   {
     "id": "hsk7-9-1545",
@@ -56287,8 +56287,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "7-9",
     "word": "何等",
     "pinyin": "hé děng",
-    "pos": "pron./adv. how",
-    "definition": ""
+    "pos": "pron./adv.",
+    "definition": "how"
   },
   {
     "id": "hsk7-9-1625",
@@ -59361,8 +59361,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "7-9",
     "word": "鉴于",
     "pinyin": "jiàn yú",
-    "pos": "prep./conj. in view of; in the light of; seeing that",
-    "definition": ""
+    "pos": "prep./conj.",
+    "definition": "in view of; in the light of; seeing that"
   },
   {
     "id": "hsk7-9-2009",
@@ -71519,8 +71519,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "7-9",
     "word": "尚",
     "pinyin": "shàng",
-    "pos": "adv./conj. still, yet; to value, to esteem",
-    "definition": ""
+    "pos": "adv./conj.",
+    "definition": "still, yet; to value, to esteem"
   },
   {
     "id": "hsk7-9-3527",
@@ -77258,8 +77258,8 @@ export const HSK_VOCAB: VocabEntry[] = [
     "level": "7-9",
     "word": "唯有",
     "pinyin": "wéi yǒu",
-    "pos": "conj./adv. only",
-    "definition": ""
+    "pos": "conj./adv.",
+    "definition": "only"
   },
   {
     "id": "hsk7-9-4244",
