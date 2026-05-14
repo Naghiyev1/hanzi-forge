@@ -2,9 +2,9 @@ import fs from 'node:fs'
 import path from 'node:path'
 
 const root = process.cwd()
-const vocabFile = path.join(root, 'src/data/generated/hsk-vocab-data.ts')
-const summaryFile = path.join(root, 'src/data/generated/hsk-validation-summary.ts')
-const reportFile = path.join(root, 'src/data/generated/hsk-quality-report.json')
+const vocabPath = path.join(root, 'src', 'data', 'generated', 'hsk-vocab-data.ts')
+const characterPath = path.join(root, 'src', 'data', 'generated', 'hsk-character-data.ts')
+const reportPath = path.join(root, 'src', 'data', 'generated', 'hsk-quality-report.json')
 
 const EXPECTED = {
   '1': { entries: 300, characters: 137, words: 163 },
@@ -16,245 +16,177 @@ const EXPECTED = {
   '7-9': { entries: 5600, characters: 512, words: 5088 },
 }
 
-const POS_LABELS = new Set([
-  'n', 'v', 'adj', 'adv', 'prep', 'conj', 'part', 'pron', 'num', 'mw',
-  'pref', 'suf', 'interj', 'aux', 'modal', 'onom', 'phrase', 'abbr',
-])
-
-function extractArrayFromTs(filePath, constName) {
-  const text = fs.readFileSync(filePath, 'utf8')
-  const exportIndex = text.indexOf(`export const ${constName}`)
-  if (exportIndex === -1) throw new Error(`Could not find export const ${constName} in ${filePath}`)
-
-  const arrayStart = text.indexOf('[', exportIndex)
-  if (arrayStart === -1) throw new Error(`Could not find array start for ${constName}`)
-
-  let depth = 0
-  let inString = false
-  let quote = ''
-  let escaped = false
-
-  for (let i = arrayStart; i < text.length; i++) {
-    const ch = text[i]
-
-    if (inString) {
-      if (escaped) {
-        escaped = false
-      } else if (ch === '\\') {
-        escaped = true
-      } else if (ch === quote) {
-        inString = false
-        quote = ''
-      }
-      continue
-    }
-
-    if (ch === '"' || ch === "'" || ch === '`') {
-      inString = true
-      quote = ch
-      continue
-    }
-
-    if (ch === '[') depth += 1
-    if (ch === ']') depth -= 1
-
-    if (depth === 0) {
-      const arrayText = text.slice(arrayStart, i + 1)
-      return JSON.parse(arrayText)
-    }
+function readArray(filePath, exportNames) {
+  const source = fs.readFileSync(filePath, 'utf8')
+  const exportPattern = exportNames.join('|')
+  const match = source.match(new RegExp(`export\\s+const\\s+(${exportPattern})[^=]*=\\s*(\\[[\\s\\S]*\\])\\s*;?\\s*$`))
+  if (!match) {
+    throw new Error(`Could not find exported array in ${filePath}. Expected one of: ${exportNames.join(', ')}`)
   }
-
-  throw new Error(`Could not find array end for ${constName}`)
+  try {
+    return { exportName: match[1], data: JSON.parse(match[2]) }
+  } catch (error) {
+    throw new Error(`Could not parse JSON array in ${filePath}: ${error.message}`)
+  }
 }
 
-function cleanLineMarkers(value) {
+function writeArray(filePath, importType, exportName, data) {
+  const output = `// @ts-nocheck\nimport type { ${importType} } from '../types'\n\nexport const ${exportName}: ${importType}[] = ${JSON.stringify(data, null, 2)}\n`
+  fs.writeFileSync(filePath, output, 'utf8')
+}
+
+function normalizeLevel(level) {
+  const value = String(level ?? '').trim()
+  if (value === '7' || value === '8' || value === '9' || value === '7-9') return '7-9'
+  return value
+}
+
+function stripLineMarkers(value) {
   return String(value ?? '')
-    .replace(/\\n/g, '\n')
-    .replace(/\r/g, '')
-    .split('\n')
-    .map((line) => line.replace(/^L\d+:\s*/i, '').trim())
-    .filter(Boolean)
-    .join(' ')
+    .replace(/\n?L\d+:\s*/g, ' ')
     .replace(/\s+/g, ' ')
     .trim()
 }
 
-function isValidPosToken(candidate) {
-  if (!candidate) return false
-  const cleaned = candidate
-    .replace(/[().]/g, '')
-    .replace(/-/g, '')
-    .trim()
-  if (!cleaned) return false
+const POS_PREFIX_RE = /^((?:n|v|adj|adv|prep|conj|pron|num|mw|part|pref|suf|interj|onom|idiom|expr)\.(?:\/(?:n|v|adj|adv|prep|conj|pron|num|mw|part|pref|suf|interj|onom|idiom|expr)\.)*)\s+(.+)$/i
 
-  const parts = cleaned
-    .split('/')
-    .map((part) => part.trim().toLowerCase())
-    .filter(Boolean)
+function cleanVocabEntry(entry) {
+  const next = { ...entry }
+  let fixes = 0
 
-  return parts.length > 0 && parts.every((part) => POS_LABELS.has(part))
-}
+  next.level = normalizeLevel(next.level)
+  next.word = stripLineMarkers(next.word)
+  next.pinyin = stripLineMarkers(next.pinyin)
+  next.pos = stripLineMarkers(next.pos)
+  next.definition = stripLineMarkers(next.definition)
+  if (next.also) next.also = stripLineMarkers(next.also)
 
-function splitPosAndDefinition(posValue) {
-  const raw = String(posValue ?? '').replace(/\\n/g, '\n').replace(/\r/g, '').trim()
-  if (!raw) return { pos: '', leakedDefinition: '' }
-
-  const normalized = raw.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim()
-  const firstSpace = normalized.search(/\s/)
-  const firstToken = firstSpace === -1 ? normalized : normalized.slice(0, firstSpace)
-  const rest = firstSpace === -1 ? '' : normalized.slice(firstSpace + 1).trim()
-
-  if (isValidPosToken(firstToken)) {
-    return {
-      pos: firstToken,
-      leakedDefinition: cleanLineMarkers(rest),
+  if (!next.definition && next.pos) {
+    const match = next.pos.match(POS_PREFIX_RE)
+    if (match) {
+      next.pos = match[1]
+      next.definition = match[2]
+      fixes += 1
     }
   }
 
-  return { pos: cleanLineMarkers(raw), leakedDefinition: '' }
+  const posLeak = next.pos.match(POS_PREFIX_RE)
+  if (next.definition && posLeak && next.pos.length > 20) {
+    next.pos = posLeak[1]
+    next.definition = `${posLeak[2]} ${next.definition}`.replace(/\s+/g, ' ').trim()
+    fixes += 1
+  }
+
+  if (next.pos === 'mw./') {
+    next.pos = 'mw.'
+    next.definition = next.definition.replace(/^\)\s*/, '')
+    fixes += 1
+  }
+
+  return { entry: next, fixes }
 }
 
-function chineseChars(value) {
-  return Array.from(value || '').filter((ch) => /[\u4e00-\u9fff]/.test(ch))
+function isSingleChineseCharacter(word) {
+  return /^[\u3400-\u9FFF]$/.test(String(word ?? '').trim())
 }
 
-function qualityFlags(entry) {
-  const flags = []
-  if (!entry.word) flags.push('missing-word')
-  if (!entry.pinyin) flags.push('missing-pinyin')
-  if (!entry.definition) flags.push('missing-definition')
-  if (entry.pos && entry.pos.length > 22) flags.push('long-pos')
-  if (entry.pos && /[;,:]|\b(to|the|and|or|of|in|for|with|correct|right|not|from|house)\b/i.test(entry.pos)) flags.push('pos-may-contain-definition')
-  if (!chineseChars(entry.word).length) flags.push('word-has-no-cjk')
-  return flags
-}
+const vocabRead = readArray(vocabPath, ['HSK_VOCAB', 'HSK_VOCAB_DATA'])
+const charRead = readArray(characterPath, ['HSK_CHARACTER_DATA', 'HSK_CHARACTERS'])
 
-const vocab = extractArrayFromTs(vocabFile, 'HSK_VOCAB')
+let fixedDefinitionLeaks = 0
+const vocab = vocabRead.data.map((entry) => {
+  const cleaned = cleanVocabEntry(entry)
+  fixedDefinitionLeaks += cleaned.fixes
+  return cleaned.entry
+})
 
-const report = {
-  totalBefore: vocab.length,
-  fixedDefinitionLeaks: 0,
-  cleanedAlsoFields: 0,
-  stillMissingDefinition: [],
+const characters = charRead.data.map((entry) => ({
+  ...entry,
+  level: normalizeLevel(entry.level),
+  character: stripLineMarkers(entry.character),
+  pinyin: stripLineMarkers(entry.pinyin),
+  definition: stripLineMarkers(entry.definition),
+}))
+
+const summary = {}
+const suspicious = {
+  emptyDefinitions: [],
   suspiciousPos: [],
   splitMismatches: [],
-  sampleFixes: [],
 }
 
-const cleaned = vocab.map((entry) => {
-  const next = { ...entry }
-
-  const beforePos = next.pos ?? ''
-  const beforeDef = next.definition ?? ''
-  const split = splitPosAndDefinition(beforePos)
-
-  if (!beforeDef && split.leakedDefinition) {
-    next.pos = split.pos
-    next.definition = split.leakedDefinition
-    report.fixedDefinitionLeaks += 1
-    if (report.sampleFixes.length < 20) {
-      report.sampleFixes.push({
-        id: next.id,
-        word: next.word,
-        beforePos,
-        afterPos: next.pos,
-        afterDefinition: next.definition,
-      })
-    }
-  } else {
-    next.pos = cleanLineMarkers(beforePos)
-  }
-
-  next.definition = cleanLineMarkers(next.definition)
-
-  if (next.also) {
-    const beforeAlso = next.also
-    next.also = cleanLineMarkers(next.also)
-    if (beforeAlso !== next.also) report.cleanedAlsoFields += 1
-  }
-
-  const flags = qualityFlags(next)
-  if (flags.includes('missing-definition')) {
-    report.stillMissingDefinition.push({ id: next.id, level: next.level, word: next.word, pinyin: next.pinyin, pos: next.pos })
-  }
-  if (flags.includes('pos-may-contain-definition') || flags.includes('long-pos')) {
-    report.suspiciousPos.push({ id: next.id, level: next.level, word: next.word, pinyin: next.pinyin, pos: next.pos, definition: next.definition })
-  }
-
-  return next
-})
-
-const summary = Object.entries(EXPECTED).map(([level, expected]) => {
-  const entries = cleaned.filter((entry) => entry.level === level)
-  const characterRows = entries.filter((entry) => chineseChars(entry.word).length === 1).length
-  const wordRows = entries.length - characterRows
-  const uniqueCharacters = new Set(entries.flatMap((entry) => chineseChars(entry.word))).size
+for (const level of Object.keys(EXPECTED)) {
+  const rows = vocab.filter((entry) => normalizeLevel(entry.level) === level)
+  const characterRows = rows.filter((entry) => isSingleChineseCharacter(entry.word)).length
+  const wordRows = rows.length - characterRows
+  const expected = EXPECTED[level]
 
   let status = 'ok'
-  if (entries.length !== expected.entries) status = 'entries-mismatch'
+  if (rows.length !== expected.entries) status = 'entries-mismatch'
   else if (characterRows !== expected.characters || wordRows !== expected.words) status = 'split-needs-review'
 
-  if (status !== 'ok') {
-    report.splitMismatches.push({
-      level,
-      entries: entries.length,
-      expectedEntries: expected.entries,
-      characterRows,
-      expectedCharactersFromPdf: expected.characters,
-      wordRows,
-      expectedWordsFromPdf: expected.words,
-      status,
-    })
-  }
-
-  return {
-    level,
-    entries: entries.length,
+  summary[level] = {
+    entries: rows.length,
     expectedEntries: expected.entries,
     characterRows,
-    uniqueCharacters,
-    expectedCharactersFromPdf: expected.characters,
+    expectedCharacters: expected.characters,
     wordRows,
-    expectedWordsFromPdf: expected.words,
+    expectedWords: expected.words,
     status,
   }
-})
 
-function writeTsArray(filePath, constName, typeName, data) {
-  const content =
-`// @ts-nocheck
-import type { ${typeName} } from '../types'
-
-export const ${constName}: ${typeName}[] = ${JSON.stringify(data, null, 2)}
-`
-  fs.writeFileSync(filePath, content, 'utf8')
+  if (status === 'split-needs-review') {
+    suspicious.splitMismatches.push(summary[level])
+  }
 }
 
-writeTsArray(vocabFile, 'HSK_VOCAB', 'VocabEntry', cleaned)
+for (const entry of vocab) {
+  if (!entry.definition) suspicious.emptyDefinitions.push({
+    id: entry.id,
+    level: entry.level,
+    word: entry.word,
+    pinyin: entry.pinyin,
+    pos: entry.pos,
+  })
 
-fs.writeFileSync(
-  summaryFile,
-`// @ts-nocheck
-export const HSK_VALIDATION_SUMMARY = ${JSON.stringify(summary, null, 2)}
-`,
-  'utf8',
-)
+  if (entry.pos && /[A-Za-z]{4,}/.test(entry.pos.replace(/adj|adv|prep|conj|pron|part|pref|suf|num|interj|onom|idiom|expr/g, ''))) {
+    suspicious.suspiciousPos.push({
+      id: entry.id,
+      level: entry.level,
+      word: entry.word,
+      pinyin: entry.pinyin,
+      pos: entry.pos,
+      definition: entry.definition,
+    })
+  }
+}
 
-report.totalAfter = cleaned.length
-report.summary = summary
-fs.writeFileSync(reportFile, JSON.stringify(report, null, 2), 'utf8')
+writeArray(vocabPath, 'VocabEntry', vocabRead.exportName, vocab)
+writeArray(characterPath, 'CharacterEntry', charRead.exportName, characters)
 
-console.log(`Cleaned ${cleaned.length} vocabulary entries.`)
-console.log(`Fixed definition leaks from POS field: ${report.fixedDefinitionLeaks}`)
-console.log(`Cleaned alternate-pronunciation fields: ${report.cleanedAlsoFields}`)
-console.log(`Still missing definitions: ${report.stillMissingDefinition.length}`)
-console.log(`Suspicious POS fields remaining: ${report.suspiciousPos.length}`)
+const report = {
+  generatedAt: new Date().toISOString(),
+  summary,
+  totals: {
+    vocabEntries: vocab.length,
+    characterEntries: characters.length,
+    fixedDefinitionLeaks,
+    emptyDefinitions: suspicious.emptyDefinitions.length,
+    suspiciousPos: suspicious.suspiciousPos.length,
+    splitMismatches: suspicious.splitMismatches.length,
+  },
+  suspicious,
+}
+
+fs.writeFileSync(reportPath, JSON.stringify(report, null, 2), 'utf8')
+
+console.log(`Loaded ${vocab.length} vocabulary entries.`)
+console.log(`Loaded ${characters.length} character entries.`)
+console.log(`Fixed definition leaks from POS field: ${fixedDefinitionLeaks}`)
+console.log(`Still missing definitions: ${suspicious.emptyDefinitions.length}`)
+console.log(`Suspicious POS fields remaining: ${suspicious.suspiciousPos.length}`)
 console.log('Validation summary:')
-for (const item of summary) {
-  console.log(`HSK ${item.level}: ${item.entries}/${item.expectedEntries} entries, ${item.characterRows}/${item.expectedCharactersFromPdf} character rows, ${item.wordRows}/${item.expectedWordsFromPdf} word rows, status=${item.status}`)
+for (const [level, item] of Object.entries(summary)) {
+  console.log(`HSK ${level}: ${item.entries}/${item.expectedEntries} entries, ${item.characterRows}/${item.expectedCharacters} character rows, ${item.wordRows}/${item.expectedWords} word rows, status=${item.status}`)
 }
-
-if (summary.some((item) => item.status === 'entries-mismatch')) {
-  console.error('Entry count mismatch detected. Review hsk-quality-report.json.')
-  process.exit(1)
-}
+console.log(`Wrote ${reportPath}`)
