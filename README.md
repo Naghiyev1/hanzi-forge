@@ -1,106 +1,81 @@
 # HanziForge
 
-HSK 3.0 vocabulary and Chinese character writing trainer.
+HanziForge is a Mandarin vocabulary and character-writing trainer for the HSK 3.0 curriculum.
+
+It combines vocabulary study, character recognition, Hanzi Writer stroke-order practice, and lightweight spaced repetition so learners can move level by level through HSK 1–6 and the advanced HSK 7–9 set.
+
+Live app:
+
+https://naghiyev1.github.io/hanzi-forge/
 
 ## What is included
 
-- HSK 1, 2, 3, 4, 5, 6, and grouped HSK 7-9
-- 11,000 vocabulary entries generated from HanziStroke HSK 3.0 PDFs
-- Vocabulary recognition and recall
-- Character writing practice per vocabulary item using Hanzi Writer
-- Character browser by HSK level
-- SRS review buttons: Again, Hard, Good, Easy
-- Local progress stored in browser localStorage
+- Full HSK 3.0 vocabulary dataset
+- HSK 1, 2, 3, 4, 5, 6, and grouped HSK 7–9
+- 11,000 vocabulary entries
+- 6,947 generated character practice entries
+- Vocabulary study mode
+- Character writing practice with Hanzi Writer
+- Search by Chinese, pinyin, definition, level, or part of speech
+- Local progress tracking in the browser
+- Simple SRS-style review actions
 - GitHub Pages deployment via GitHub Actions
 
-## Validation summary
+## Dataset coverage
 
-[
-  {
-    "level": "1",
-    "entries": 300,
-    "expectedEntries": 300,
-    "characterRows": 137,
-    "uniqueCharacters": 137,
-    "expectedCharactersFromPdf": 137,
-    "wordRows": 163,
-    "expectedWordsFromPdf": 163,
-    "status": "ok"
-  },
-  {
-    "level": "2",
-    "entries": 200,
-    "expectedEntries": 200,
-    "characterRows": 84,
-    "uniqueCharacters": 82,
-    "expectedCharactersFromPdf": 84,
-    "wordRows": 116,
-    "expectedWordsFromPdf": 116,
-    "status": "ok"
-  },
-  {
-    "level": "3",
-    "entries": 500,
-    "expectedEntries": 500,
-    "characterRows": 134,
-    "uniqueCharacters": 133,
-    "expectedCharactersFromPdf": 134,
-    "wordRows": 366,
-    "expectedWordsFromPdf": 366,
-    "status": "ok"
-  },
-  {
-    "level": "4",
-    "entries": 1000,
-    "expectedEntries": 1000,
-    "characterRows": 210,
-    "uniqueCharacters": 207,
-    "expectedCharactersFromPdf": 210,
-    "wordRows": 790,
-    "expectedWordsFromPdf": 790,
-    "status": "ok"
-  },
-  {
-    "level": "5",
-    "entries": 1600,
-    "expectedEntries": 1600,
-    "characterRows": 266,
-    "uniqueCharacters": 261,
-    "expectedCharactersFromPdf": 266,
-    "wordRows": 1334,
-    "expectedWordsFromPdf": 1334,
-    "status": "ok"
-  },
-  {
-    "level": "6",
-    "entries": 1800,
-    "expectedEntries": 1800,
-    "characterRows": 252,
-    "uniqueCharacters": 246,
-    "expectedCharactersFromPdf": 252,
-    "wordRows": 1548,
-    "expectedWordsFromPdf": 1548,
-    "status": "ok"
-  },
-  {
-    "level": "7-9",
-    "entries": 5600,
-    "expectedEntries": 5600,
-    "characterRows": 513,
-    "uniqueCharacters": 502,
-    "expectedCharactersFromPdf": 512,
-    "wordRows": 5087,
-    "expectedWordsFromPdf": 5088,
-    "status": "ok"
-  }
-]
+| Level | Entries |
+|---|---:|
+| HSK 1 | 300 |
+| HSK 2 | 200 |
+| HSK 3 | 500 |
+| HSK 4 | 1,000 |
+| HSK 5 | 1,600 |
+| HSK 6 | 1,800 |
+| HSK 7–9 | 5,600 |
+| **Total** | **11,000** |
 
-Run validation:
+The generated validation report is stored at:
 
-```bash
-npm run validate:data
-```
+```text
+src/data/generated/hsk-quality-report.json
+cat > README.md <<'EOF'
+# HanziForge
 
-## Deploy
+HanziForge is a Mandarin vocabulary and character-writing trainer for the HSK 3.0 curriculum.
 
-Set GitHub Pages source to **GitHub Actions** and push to `main`.
+It combines vocabulary study, character recognition, Hanzi Writer stroke-order practice, and lightweight spaced repetition so learners can move level by level through HSK 1–6 and the advanced HSK 7–9 set.
+
+Live app:
+
+https://naghiyev1.github.io/hanzi-forge/
+
+## What is included
+
+- Full HSK 3.0 vocabulary dataset
+- HSK 1, 2, 3, 4, 5, 6, and grouped HSK 7–9
+- 11,000 vocabulary entries
+- 6,947 generated character practice entries
+- Vocabulary study mode
+- Character writing practice with Hanzi Writer
+- Search by Chinese, pinyin, definition, level, or part of speech
+- Local progress tracking in the browser
+- Simple SRS-style review actions
+- GitHub Pages deployment via GitHub Actions
+
+## Dataset coverage
+
+| Level | Entries |
+|---|---:|
+| HSK 1 | 300 |
+| HSK 2 | 200 |
+| HSK 3 | 500 |
+| HSK 4 | 1,000 |
+| HSK 5 | 1,600 |
+| HSK 6 | 1,800 |
+| HSK 7–9 | 5,600 |
+| **Total** | **11,000** |
+
+The generated validation report is stored at:
+
+```text
+src/data/generated/hsk-quality-report.json
